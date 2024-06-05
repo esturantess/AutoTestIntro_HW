@@ -1,10 +1,12 @@
 package accuweather;
 
 
+import io.qameta.allure.*;
 import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
 import location.Location;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import weather.Weather;
 
@@ -16,9 +18,15 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 
+@Epic("Тестирование проекта accuweather.com")
+@Feature("Тестирование API Forecast")
 public class ForecastsDailyTest extends AccuweatherAbstractTest {
 
     @Test
+    @DisplayName("Тест ForecastsDailyTest - получение ответа 1 день")
+    @Link("https://developer.accuweather.com/accuweather-forecast-api/apis")
+    @Severity(SeverityLevel.BLOCKER)
+    @Story("Вызов метода получения погоды за 1 день")
     void testGetResponse1Day() {
         Weather weather = given().queryParam("apikey", getApiKey()).pathParam("locationKey", 50)
                 .when().get(getBaseUrl() + "/forecasts/v1/daily/1day/{locationKey}")
@@ -30,6 +38,10 @@ public class ForecastsDailyTest extends AccuweatherAbstractTest {
 
 
     @Test
+    @DisplayName("Тест ForecastsDailyTest - получение ответа 10 дней")
+    @Link("https://developer.accuweather.com/accuweather-forecast-api/apis")
+    @Severity(SeverityLevel.BLOCKER)
+    @Story("Вызов метода получения погоды за 10 дней")
     void testGetResponse10Days() {
         String code = given().queryParam("apikey", getApiKey()).pathParam("locationKey", 50)
                 .when()
@@ -49,6 +61,10 @@ public class ForecastsDailyTest extends AccuweatherAbstractTest {
     }
 
     @Test
+    @DisplayName("Тест ForecastsDailyTest - получение ответа 15 дней")
+    @Link("https://developer.accuweather.com/accuweather-forecast-api/apis")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Вызов метода получения погоды за 15 дней")
     void testGetResponse15Days() {
 
         String code = given().queryParam("apikey", getApiKey()).pathParam("locationKey", 50)
@@ -70,6 +86,10 @@ public class ForecastsDailyTest extends AccuweatherAbstractTest {
     }
 
     @Test
+    @DisplayName("Тест ForecastsDailyTest - поиск по дате ответа с автозаполнением")
+    @Link("https://developer.accuweather.com/accuweather-forecast-api/apis")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Поиск по дате ответа с автозаполнением")
     void testResponseDateAutocompleteSearch() {
         //вариант через assertThat() (но после первого бага проверка прекращается)
         given().queryParam("apikey", getApiKey()).queryParam("q", "Moscow")
@@ -90,6 +110,10 @@ public class ForecastsDailyTest extends AccuweatherAbstractTest {
     }
 
     @Test
+    @DisplayName("Тест ForecastsDailyTest - получение Locations")
+    @Link("https://developer.accuweather.com/accuweather-forecast-api/apis")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Получение локации")
     void testGetLocations() {
         Map<String, String> mapQuery = new HashMap<>();
         mapQuery.put("apikey", getApiKey());

@@ -120,7 +120,7 @@
                     закомментируйте строку-->
                     <!--<reportVersion>2.4.1</reportVersion>-->
                     <!-- Добавим адрес директории для генератора отчета -->
-                    <buildDirectory>C:\Java\Auto_HW_6/</buildDirectory>
+                    <buildDirectory>E:\GB\Введение в автоматизацию тестирования\HW\Auto_HW_6</buildDirectory>
                 </configuration>
             </plugin>
 

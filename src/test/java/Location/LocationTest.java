@@ -1,11 +1,13 @@
 package Location;
 
 import accuweather.AccuweatherAbstractTest;
+import io.qameta.allure.*;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import location.Location;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
@@ -17,9 +19,15 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.lessThan;
 
+@Epic("Тестирование проекта accuweather.com")
+@Feature("Тестирование API Location")
 public class LocationTest extends AccuweatherAbstractTest {
 
     @Test
+    @DisplayName("Тест LocationTest - получение Location")
+    @Link("https://developer.accuweather.com/accuweather-locations-api/apis")
+    @Severity(SeverityLevel.BLOCKER)
+    @Story("Получение локации")
     void testGetLocationsWithNewAssertions() {
         Map<String, String> mapQuery = new HashMap<>();
 
@@ -50,6 +58,10 @@ public class LocationTest extends AccuweatherAbstractTest {
     }
 
     @Test
+    @DisplayName("Тест LocationTest - получение ответа Locations")
+    @Link("https://developer.accuweather.com/accuweather-locations-api/apis")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Получение ответа Locations")
     void testGetResponseLocations() {
 
         Response response = given().queryParams("apikey", getApiKey(), "q", "Moscow")
